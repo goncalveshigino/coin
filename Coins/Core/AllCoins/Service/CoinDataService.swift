@@ -9,10 +9,15 @@ import Foundation
 
 class CoinDataService {
     
+    private let pageLimit = 20
+    private var page = 0
+
+    
     let BASE_URL = "https://api.coingecko.com/api/v3/coins/"
     
+    
     var urlString: String {
-        return "\(BASE_URL)markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false&price_change_percentage=24h&locale=en"
+        return "\(BASE_URL)markets?vs_currency=usd&order=market_cap_desc&per_page=\(pageLimit)&page=\(page)&sparkline=false&price_change_percentage=24h&locale=en"
     }
     
     

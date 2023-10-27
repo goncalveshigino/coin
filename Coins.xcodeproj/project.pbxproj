@@ -15,6 +15,7 @@
 		D619475D2AB47667000EE775 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D619475C2AB47667000EE775 /* ContentView.swift */; };
 		D619475F2AB47669000EE775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D619475E2AB47669000EE775 /* Assets.xcassets */; };
 		D61947622AB47669000EE775 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D61947612AB47669000EE775 /* Preview Assets.xcassets */; };
+		D61ECA1B2AB8BDE000F16677 /* CoinDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61ECA1A2AB8BDE000F16677 /* CoinDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		D619475C2AB47667000EE775 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D619475E2AB47669000EE775 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D61947612AB47669000EE775 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D61ECA1A2AB8BDE000F16677 /* CoinDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				D619475C2AB47667000EE775 /* ContentView.swift */,
+				D61ECA1A2AB8BDE000F16677 /* CoinDetailsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D61ECA1B2AB8BDE000F16677 /* CoinDetailsView.swift in Sources */,
 				D6118A542AB7FDDA00338A3A /* CoinDataService.swift in Sources */,
 				D619475D2AB47667000EE775 /* ContentView.swift in Sources */,
 				D6118A512AB7E68A00338A3A /* CoinsViewModel.swift in Sources */,

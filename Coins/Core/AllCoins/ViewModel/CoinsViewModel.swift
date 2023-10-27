@@ -8,18 +8,16 @@
 import Foundation
 
 class CoinsViewModel: ObservableObject {
-    
-//    @Published var coin = ""
-//    @Published var price = ""
-
-    
+        
     @Published var coins = [Coin]()
     @Published var errorMessage: String?
     
+    
+    
     private let service = CoinDataService()
     
-    init() {
-        fetchCoins()
+    init()  {
+        loadData()
     }
     
     func fetchCoins() {
@@ -42,21 +40,28 @@ class CoinsViewModel: ObservableObject {
 }
 
 
-//    func fetchPrice(coin: String) {
-//        service.fetchPrice(coin: coin) { priceFormService in
-//            DispatchQueue.main.async {
-//                self.price = "$\(priceFormService)"
-//                self.coin = coin
-//            }
-//        }
-//    }
+extension CoinsViewModel {
     
-    //        service.fetchCoins { coins, error in
-    //            DispatchQueue.main.async {
-    //                if let error = error {
-    //                    self.errorMessage = error.localizedDescription
-    //                    return
-    //                }
-    //                self.coins = coins ?? []
-    //            }
-    //        }
+    @MainActor
+    func fetchCoinsAsync() async throws{
+        guard let url = URL(string: service.urlString) else {
+            print("DEBUG: Invalid URL")
+            return
+        }
+        
+        let (data,response) = try await URLSession.shared.data(from: url)
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else { return }
+        guard let coins = try? JSONDecoder().decode([Coin].self, from: data) else { return }
+        self.coins = coins
+    }
+    
+    func loadData() {
+        Task (priority: .medium) {
+           try await fetchCoinsAsync()
+        }
+    }
+}
+
+
+
+

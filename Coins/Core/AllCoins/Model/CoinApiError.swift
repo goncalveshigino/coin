@@ -8,13 +8,15 @@
 import Foundation
 
 
-enum CoinApiError: Error {
+enum CoinApiError: Error, LocalizedError {
     
+    case invalidURL
+    case serverError
     case invalidData
     case jsonParsingFailure
     case requestFailed(description: String)
     case invalidStatusCode(statusCode: Int)
-    case unknownError(error: Error)
+    case unknown(Error)
     
     var customDescription: String {
         switch self {
@@ -22,7 +24,11 @@ enum CoinApiError: Error {
             case .jsonParsingFailure: return "Failed to parse JSON"
             case let .requestFailed(description): return "Request failed: \(description)"
             case let .invalidStatusCode(statusCode): return "Invalid status code: \(statusCode)"
-            case let .unknownError(error): return "An unkwon error occured \(error.localizedDescription)"
+            case let .unknown(error): return error.localizedDescription
+        case .invalidURL:
+            return ""
+        case .serverError:
+            return "There was an error the server. Please try again later"
         }
     }
 }

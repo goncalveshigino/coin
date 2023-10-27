@@ -9,7 +9,11 @@ import Foundation
 
 class CoinDataService {
     
-    private let urlString = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false&price_change_percentage=24h&locale=en"
+    let BASE_URL = "https://api.coingecko.com/api/v3/coins/"
+    
+    var urlString: String {
+        return "\(BASE_URL)markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false&price_change_percentage=24h&locale=en"
+    }
     
     
     func fetchCoinsWithResul(completion: @escaping(Result<[Coin], CoinApiError>) -> Void) {
@@ -17,8 +21,9 @@ class CoinDataService {
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
+            
             if let error = error {
-                completion(.failure(.unknownError(error: error)))
+                completion(.failure(.unknown(error)))
                 return
             }
             
@@ -102,3 +107,6 @@ class CoinDataService {
         }.resume()
     }
 }
+
+
+
